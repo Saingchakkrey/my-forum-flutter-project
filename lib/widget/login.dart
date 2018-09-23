@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dialog_authentication.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -6,6 +7,17 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  showAuthDialog({String auth: "guest", String name: "Guest"}) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AuthDialog(
+            authType: auth,
+            username: name,
+          );
+        });
+  }
+
   Widget forumImage() {
     return Container(
       child: Image(
@@ -23,7 +35,9 @@ class _LoginState extends State<Login> {
         child: Image(
           image: AssetImage("assets/login_with_fb.png"),
         ),
-        onPressed: () {},
+        onPressed: () {
+          showAuthDialog(auth: "fb", name: "Chakkrey");
+        },
       ),
     );
   }
@@ -34,7 +48,7 @@ class _LoginState extends State<Login> {
       child: GestureDetector(
         child: Text("Skip"),
         onTap: () {
-
+          showAuthDialog();
         },
       ),
     );
