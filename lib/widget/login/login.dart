@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dialog_authentication.dart';
+import 'package:my_forum_flutter_project/widget/login/dialog_authentication.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -69,8 +69,7 @@ class _LoginState extends State<Login> {
                       width: 100.0,
                       height: 100.0,
                       child: FlatButton(
-                          onPressed: null,
-                          child: Image(image: AssetImage('assets/google.png'))),
+                          onPressed: null, child: Image(image: AssetImage('assets/google.png'))),
                     ),
                     Container(
                       height: 100.0,
@@ -81,9 +80,7 @@ class _LoginState extends State<Login> {
                       width: 100.0,
                       height: 100.0,
                       child: FlatButton(
-                          onPressed: null,
-                          child:
-                              Image(image: AssetImage('assets/facebook.png'))),
+                          onPressed: null, child: Image(image: AssetImage('assets/facebook.png'))),
                     ),
                   ],
                 ),
@@ -92,17 +89,23 @@ class _LoginState extends State<Login> {
                 'OR',
                 style: TextStyle(color: Color(0xFFb999999), fontSize: 25.0),
               ),
-
               Container(
                 margin: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-                child: RawMaterialButton(onPressed: null,
-                  child:DecoratedBox(
+                child: RawMaterialButton(
+                  onPressed: null,
+                  child: DecoratedBox(
                     decoration: BoxDecoration(
                       color: Color(0xFFb01c497),
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    child: Padding(padding: EdgeInsets.all(10.0),
-                    child: Text('Continue as guest' , style: TextStyle(color: Colors.white, fontSize: 20.0),),),),
+                    child: Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Text(
+                        'Continue as guest',
+                        style: TextStyle(color: Colors.white, fontSize: 20.0),
+                      ),
+                    ),
+                  ),
                 ),
               )
             ],

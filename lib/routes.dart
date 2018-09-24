@@ -1,12 +1,18 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:my_forum_flutter_project/widget/login.dart';
+import 'package:my_forum_flutter_project/widget/login/login.dart';
+import 'package:my_forum_flutter_project/widget/bottom_navigation_bar.dart';
+
 Router config() {
   final router = Router();
 
-  router.define('/', handler: Handler(handlerFunc: (context, param){
+  router.define('/login_screen', handler: Handler(handlerFunc: (context, param){
   return AuthGuardWidget(source: Login());
+  }));
+
+  router.define('/', handler: Handler(handlerFunc: (context, param){
+  return AuthGuardWidget(source: NavigationBar());
   }));
 
   return router;
@@ -64,6 +70,8 @@ class _AuthGuardWidgetState extends State<AuthGuardWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return isAuth ? getSource() : getLogin();
+    //TODO: Watch out
+    //return isAuth ? getSource() : getLogin();
+    return getSource();
   }
 }
