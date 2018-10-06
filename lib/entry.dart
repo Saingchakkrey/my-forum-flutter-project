@@ -13,7 +13,7 @@ class Forums extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primaryColor: Colors.green,
+        primaryColor: Color.fromRGBO(1, 196, 151, 1.0),
         accentColor: Colors.greenAccent,
       ),
       onGenerateRoute: router.generator,
