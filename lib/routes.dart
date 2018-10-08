@@ -7,11 +7,11 @@ import 'package:my_forum_flutter_project/widget/bottom_navigation_bar.dart';
 Router config() {
   final router = Router();
 
-  router.define('/login_screen', handler: Handler(handlerFunc: (context, param){
+  router.define('/', handler: Handler(handlerFunc: (context, param){
   return AuthGuardWidget(source: Login());
   }));
 
-  router.define('/', handler: Handler(handlerFunc: (context, param){
+  router.define('/navigation-bar', handler: Handler(handlerFunc: (context, param){
   return AuthGuardWidget(source: NavigationBar());
   }));
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_forum_flutter_project/widget/login/dialog_authentication.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+
 
 class Login extends StatefulWidget {
   @override
@@ -7,6 +9,36 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+
+  bool isLoggedIn = false;
+
+  void initiateFacebookLogin() async {
+    var facebookLogin = FacebookLogin();
+    var facebookLoginResult =
+    await facebookLogin.logInWithReadPermissions(['email']);
+    switch (facebookLoginResult.status) {
+      case FacebookLoginStatus.error:
+        print("Error");
+        onLoginStatusChanged(false);
+        break;
+      case FacebookLoginStatus.cancelledByUser:
+        print("CancelledByUser");
+        onLoginStatusChanged(false);
+        break;
+      case FacebookLoginStatus.loggedIn:
+        print("LoggedIn");
+        onLoginStatusChanged(true);
+        break;
+    }
+  }
+
+  void onLoginStatusChanged(bool isLoggedIn) {
+    setState(() {
+      this.isLoggedIn = isLoggedIn;
+    });
+  }
+
+
   showAuthDialog({String auth: "guest", String name: "Guest"}) {
     showDialog(
         context: context,
@@ -80,7 +112,9 @@ class _LoginState extends State<Login> {
                       width: 100.0,
                       height: 100.0,
                       child: FlatButton(
-                          onPressed: null, child: Image(image: AssetImage('assets/facebook.png'))),
+                         onPressed: () => initiateFacebookLogin(),
+                          child:
+                              Image(image: AssetImage('assets/facebook.png'))),
                     ),
                   ],
                 ),
