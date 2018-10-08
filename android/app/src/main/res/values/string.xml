@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Forum</string>
+    <string name="facebook_app_id">238520583493640</string>
+    <string name="fb_login_protocol_scheme">fb238520583493640</string>
+</resources>
