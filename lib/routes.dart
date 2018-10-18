@@ -3,15 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:my_forum_flutter_project/widget/login/login.dart';
 import 'package:my_forum_flutter_project/widget/bottom_navigation_bar.dart';
+import 'package:my_forum_flutter_project/controller/auth.dart' as auth;
 
 Router config() {
   final router = Router();
 
   router.define('/', handler: Handler(handlerFunc: (context, param){
-  return AuthGuardWidget(source: Login());
-  }));
-
-  router.define('/navigation-bar', handler: Handler(handlerFunc: (context, param){
   return AuthGuardWidget(source: NavigationBar());
   }));
 
@@ -34,7 +31,7 @@ class _AuthGuardWidgetState extends State<AuthGuardWidget> {
   Widget getSource() {
     return WillPopScope(
       onWillPop: () async {
-        //isAuth = await auth.isAuthenticated();
+        isAuth = await auth.isAuthenticated();
         if (isAuth) {
           return true;
         }
@@ -48,7 +45,7 @@ class _AuthGuardWidgetState extends State<AuthGuardWidget> {
   Widget getLogin() {
     return WillPopScope(
       onWillPop: () async {
-        //isAuth = await auth.isAuthenticated();
+        isAuth = await auth.isAuthenticated();
         if (isAuth) {
           setState(() {});
           return false;
@@ -63,15 +60,13 @@ class _AuthGuardWidgetState extends State<AuthGuardWidget> {
   void initState() {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      //this.isAuth = await auth.isAuthenticated();
+      this.isAuth = await auth.isAuthenticated();
       setState(() {});
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    //TODO: Watch out
-    //return isAuth ? getSource() : getLogin();
-    return getSource();
+    return isAuth ? getSource() : getLogin();
   }
 }
