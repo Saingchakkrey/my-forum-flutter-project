@@ -98,10 +98,122 @@ class _NavigationBarState extends State<NavigationBar> {
     );
   }
 
+  Widget drawerBottomNavigation() {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      currentIndex: currentIndex,
+      onTap: onTabTapped,
+      items: [
+        BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text(
+              "Home",
+              style: TextStyle(fontSize: 10.0),
+            )),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.dashboard),
+            title: Text(
+              "Courses",
+              style: TextStyle(fontSize: 10.0),
+            )),
+        BottomNavigationBarItem(
+            icon: new Stack(children: <Widget>[
+              new Icon(Icons.notifications),
+              new Positioned(
+                // draw a red marble
+                top: 0.0,
+                right: 0.0,
+                child: new Icon(Icons.brightness_1,
+                    size: 8.0, color: Colors.redAccent),
+              )
+            ]),
+            title: Text(
+              "Notifications",
+              style: TextStyle(fontSize: 10.0),
+            )),
+      ],
+    );
+  }
+
+  Widget NavigationDrawer() {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(1, 196, 151, 1.0),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      IconButton(
+                          icon: Icon(
+                            Icons.keyboard_arrow_left,
+                            color: Colors.white,
+                            size: 32.0,
+                          ),
+                          onPressed: null),
+                      IconButton(
+                          icon: Icon(
+                            Icons.account_circle,
+                            color: Colors.white,
+                            size: 32.0,
+                          ),
+                          onPressed: null),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(20.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Image(
+                        image: AssetImage('assets/facebook.png'),
+                        width: 70,
+                        height: 70,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          Text("Chheng SC"),
+                          Text("IT Engineering"),
+                          Text("Type: Student")
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          ListTile(
+            title: Text('Item 1'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: Text('Item 2'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(),
+      drawer: NavigationDrawer(),
       bottomNavigationBar: bottomNavigation(),
       body: children[currentIndex],
     );
