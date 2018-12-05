@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_forum_flutter_project/controller/dummyQuestion.dart';
+import 'package:my_forum_flutter_project/manager/dummyQuestion.dart';
 
 class Home extends StatefulWidget {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_forum_flutter_project/widget/course_nav.dart';
-import 'package:my_forum_flutter_project/widget/home_nav.dart';
+import 'package:my_forum_flutter_project/widget/questions/course_nav.dart';
+import 'package:my_forum_flutter_project/widget/questions/home_nav.dart';
 
 class NavigationBar extends StatefulWidget {
   @override

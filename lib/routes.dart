@@ -2,14 +2,14 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:my_forum_flutter_project/widget/login/login.dart';
-import 'package:my_forum_flutter_project/widget/bottom_navigation_bar.dart';
-import 'package:my_forum_flutter_project/controller/auth.dart' as auth;
+import 'package:my_forum_flutter_project/widget/questions/bottom_navigation_bar.dart';
+import 'package:my_forum_flutter_project/manager/auth.dart' as auth;
 
 Router config() {
   final router = Router();
 
-  router.define('/', handler: Handler(handlerFunc: (context, param){
-  return AuthGuardWidget(source: NavigationBar());
+  router.define('/', handler: Handler(handlerFunc: (context, param) {
+    return AuthGuardWidget(source: NavigationBar());
   }));
 
   return router;
