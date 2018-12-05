@@ -1,8 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:my_forum_flutter_project/controller/auth.dart' as auth;
-import 'package:my_forum_flutter_project/widget/login/dialog_authGuest.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
-import 'package:my_forum_flutter_project/entry.dart';
+import 'package:my_forum_flutter_project/manager/auth.dart' as auth;
+import 'package:my_forum_flutter_project/firebase/authentication/auth.dart';
+import 'package:my_forum_flutter_project/widget/login/dialog_authGuest.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -39,13 +40,14 @@ class _LoginState extends State<Login> {
   }
 
   showAuthDialog() async {
+    final FirebaseUser user = await signInGuest();
     var result = await showDialog(
         context: context,
         builder: (BuildContext context) {
           return AuthDialog();
         });
     if(result == "CONTINUE AS GUEST") {
-      auth.login("auth.guest.token");
+      auth.login(user.uid);
       Navigator.maybePop(context);
     }
   }
@@ -89,8 +91,7 @@ class _LoginState extends State<Login> {
                   ),
                 ],
               )),
-              Container(
-                  //margin: EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 0.0),
+              Container( 
                   child: Text(
                 'LOGIN WITH',
                 style: TextStyle(color: Color(0xFFb999999), fontSize: 25.0),

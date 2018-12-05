@@ -4,12 +4,9 @@
 
     <!-- You can insert your own image assets here -->
     <item>
-        <!--<bitmap-->
-            <!--android:gravity="center"-->
-            <!--android:src="@drawable/google"-->
-            <!--/>-->
-        <animated-rotate android:drawable="@drawable/google"
-            android:pivotY="@android:integer/config_shortAnimTime"
-            android:visible="true"/>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/google"
+            />
     </item>
 </layer-list>
